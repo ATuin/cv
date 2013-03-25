@@ -1,4 +1,3 @@
-
 @layout('templates.main')
 
 @section('content')
