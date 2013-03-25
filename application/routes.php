@@ -31,7 +31,11 @@
 |		});
 |
 */
-
+Route::get('admin/fichier', function()
+{
+	$contents = File::get('storage/database/contacts.csv');
+	return "Contenu du fichier : <br/>".$contents;
+});
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers

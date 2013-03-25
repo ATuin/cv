@@ -48,7 +48,7 @@ class Home_Controller extends Base_Controller {
 		$nom = Input::get('nom');
 		$prenom = Input::get('prenom');
 		$email = Input::get('email');
-		$message = Input::get('message');
+		$contenu = Input::get('message');
 
 		// on prepare le mail
 		$mailer = IoC::resolve('mailer');
@@ -71,11 +71,11 @@ class Home_Controller extends Base_Controller {
 			$contact->nom=$nom;
 			$contact->prenom=$prenom;
 			$contact->email=$email;
-			$contact->contenu=$message;
+			$contact->contenu=$contenu;
 			$contact->save();
 
 			// on stocke dans le fichier txt (csv)
-			File::append('storage/database/contacts.csv', "$nom,$prenom,$email,$message\n");
+			File::append('storage/database/contacts.csv', "$nom,$prenom,$email,$contenu\n");
 
 			if($mailer->send($message))
 			{

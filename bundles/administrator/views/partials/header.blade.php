@@ -22,6 +22,7 @@
 				</li>
 			@endif
 		@endforeach
+		<a href="{{URL::to_action('admin@fichier')}}">Fichier Contacts</a>
 	</ul>
 	<div id="right_nav">
 		@if (count(Config::get('application.languages')) > 0)
@@ -42,6 +43,7 @@
 				</li>
 			</ul>
 		@endif
+
 		<a href="{{URL::base()}}" id="back_to_site">{{__('administrator::administrator.backtosite')}}</a>
 	</div>
 </header>
