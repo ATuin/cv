@@ -44,5 +44,5 @@ return array(
 	    ),
 	'bootstrapper' => array('auto' => true),
 	'swiftmailer' => array('auto'=>true),
-
+	'recaptcha' => array('auto' => true),
 	);

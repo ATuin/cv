@@ -49,45 +49,54 @@ class Home_Controller extends Base_Controller {
 		$prenom = Input::get('prenom');
 		$email = Input::get('email');
 		$contenu = Input::get('message');
+		$captcha = Input::get('recaptcha_response_field');
 
-		// on prepare le mail
-		$mailer = IoC::resolve('mailer');
-		$message = Swift_Message::newInstance("Message de $nom ($email)")
-		->setFrom(array('webmaster@agnus.me'=>'site cv'))
-		->setTo(array('ariane@agnus.me'=>'Ariane'))
-		->setBody($message,'text/html');
+		$rules = array(
+		    'recaptcha_response_field' => 'recaptcha:KeyPrivate'
+		);
+		$validator = Validator::make($captcha, $rules);
 
-		Input::flash();
-		if (empty($nom) OR empty($prenom) OR empty($email) OR empty($message))
+		if($validator->valid())
 		{
-			Session::flash('status_error', 'Une erreur est survenue. Veillez à remplir tous les champs.');
+    		// on prepare le mail
+			$mailer = IoC::resolve('mailer');
+			$message = Swift_Message::newInstance("Message de $nom ($email)")
+			->setFrom(array('webmaster@agnus.me'=>'site cv'))
+			->setTo(array('ariane@agnus.me'=>'Ariane'))
+			->setBody($contenu,'text/html');
 
-		}
-		else
-		{
-			
-			//  on stocke dans la DB
-			$contact = new Contact();
-			$contact->nom=$nom;
-			$contact->prenom=$prenom;
-			$contact->email=$email;
-			$contact->contenu=$contenu;
-			$contact->save();
-
-			// on stocke dans le fichier txt (csv)
-			File::append('storage/database/contacts.csv', "$nom,$prenom,$email,$contenu\n");
-
-			if($mailer->send($message))
+			Input::flash();
+			if (empty($nom) OR empty($prenom) OR empty($email) OR empty($message))
 			{
-				Session::flash('status_success', 'Message envoyé');
+				Session::flash('status_error', 'Une erreur est survenue. Veillez à remplir tous les champs.');
+
 			}
 			else
 			{
-				Session::flash('status_error', "Une erreur d'envoi a eu lieu");
-			}
+				
+				//  on stocke dans la DB
+				$contact = new Contact();
+				$contact->nom=$nom;
+				$contact->prenom=$prenom;
+				$contact->email=$email;
+				$contact->contenu=$contenu;
+				$contact->save();
 
+				// on stocke dans le fichier txt (csv)
+				File::append('storage/database/contacts.csv', "$nom,$prenom,$email,$contenu\n");
+
+				if($mailer->send($message))
+				{
+					Session::flash('status_success', 'Message envoyé');
+				}
+				else
+				{
+					Session::flash('status_error', "Une erreur d'envoi a eu lieu");
+				}
+
+			}
+			return  Redirect::to('home/contact');
 		}
-		return  Redirect::to('home/contact');
 	}
 
 }
