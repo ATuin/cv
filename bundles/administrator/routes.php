@@ -54,6 +54,11 @@ Route::group(array('before' => 'validate_admin|validate_model|add_assets'), func
 		'as' => 'admin_display_image',
 		'uses' => 'administrator::admin@display_image'
 	));
+
+	Route::get('(:bundle)/(:any)/file', array(
+		'as' => 'admin_file',
+		'uses' => 'administrator::admin@file'
+	));
 });
 
 //CSRF protection in forms
@@ -92,10 +97,10 @@ Route::group(array('before' => 'validate_admin|validate_model|disable_profiler')
 		'as' => 'admin_image_upload',
 		'uses' => 'administrator::admin@image_upload'
 	));
-
 	//Updating Rows Per Page
 	Route::post('(:bundle)/(:any)/rows_per_page', array(
 		'as' => 'admin_rows_per_page',
 		'uses' => 'administrator::admin@rows_per_page'
 	));
 });
+

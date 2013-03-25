@@ -22,7 +22,7 @@
 				</li>
 			@endif
 		@endforeach
-		<a href="{{URL::to_action('admin@fichier')}}">Fichier Contacts</a>
+		<a href="{{URL::to_route('admin_file','contacts')}}">Fichier Contacts</a>
 	</ul>
 	<div id="right_nav">
 		@if (count(Config::get('application.languages')) > 0)

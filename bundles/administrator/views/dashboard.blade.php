@@ -1,6 +1,6 @@
 <div id="dashboard">
 	<h2>{{ __('administrator::administrator.dashboard') }}</h2>
-
+<!--
 	<ul class="models">
 		@foreach ($menu as $key => $item)
 			<li>
@@ -19,4 +19,5 @@
 			</li>
 		@endforeach
 	</ul>
+-->
 </div>

@@ -215,6 +215,13 @@ class Administrator_Admin_Controller extends Controller
 		$this->layout->content = View::make("administrator::dashboard");
 	}
 
+	public function action_file($model)
+	{
+		//$this->layout->content = View::make("administrator::dashboard");
+		$file_content = File::get('storage/database/'.$model->name.'.csv');
+		$this->layout->content = View::make("administrator::file", array('file_content' => $file_content, 'file' => $model->name));
+	}
+
 	/**
 	 * Gets the item edit page / information
 	 *
