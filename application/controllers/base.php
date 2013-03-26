@@ -9,6 +9,14 @@ class Base_Controller extends Controller {
 	 * @param  array     $parameters
 	 * @return Response
 	 */
+
+	public function __construct()
+	{
+		//assets
+		Asset::add('style', 'css/style.css');
+		parent::__construct();
+	}
+
 	public function __call($method, $parameters)
 	{
 		return Response::error('404');

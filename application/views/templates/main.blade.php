@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width">
     {{Asset::container('bootstrapper')->scripts();}}
     {{Asset::container('bootstrapper')->styles();}}
-    {{ Asset::styles(); }} 
-    {{ Asset::scripts(); }} 
+    {{Asset::styles();}} 
+    {{Asset::scripts();}} 
 </head>
 <body>
             <div class="container-fluid">
