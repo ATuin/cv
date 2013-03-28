@@ -1,5 +1,32 @@
 <?php
 
+Route::post('auth', function() {
+        $credentials = array( 
+                        'username' => Input::get('email'),
+                        'password' => Input::get('password')
+                );
+
+                if ( Auth::attempt($credentials) )
+                {
+                                if ( Auth::check() ) 
+                                        {
+                                                Session::flash('status_success', "Connexion réussie !");
+                                                return Redirect::to_action('admin');
+                                        }
+                }
+                Session::flash('status_error', "Login et/ou mot de passe incorrect(s)");
+                return Redirect::to_action('login');
+});
+
+Route::get('login', function() {
+        return View::make('user.login');
+});
+
+
+Route::get('logout', function () {
+        Auth::logout();
+    return Redirect::to_action('home@index');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes

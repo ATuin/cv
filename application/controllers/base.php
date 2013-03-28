@@ -13,7 +13,9 @@ class Base_Controller extends Controller {
 	public function __construct()
 	{
 		//assets
+		Asset::add('style', 'css/patternizer.min.js');
 		Asset::add('style', 'css/style.css');
+	    	Asset::add('js', 'js/jquery.colorbox-min.js');
 		parent::__construct();
 	}
 

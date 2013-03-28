@@ -35,7 +35,6 @@ class Home_Controller extends Base_Controller {
 	{
 		$experiences=Experience::all();
 		return View::make('home.index')->with('experiences',$experiences);
-
 	}
 
 	public function get_contact()
@@ -52,7 +51,7 @@ class Home_Controller extends Base_Controller {
 		$captcha = Input::get('recaptcha_response_field');
 
 		$rules = array(
-		    'recaptcha_response_field' => 'recaptcha:KeyPrivate'
+		    'recaptcha_response_field' => 'recaptcha:6Lcd-d4SAAAAAOQc63E3EYmRSxIfXADOHZxEkX2T'
 		);
 		$validator = Validator::make($captcha, $rules);
 
@@ -83,8 +82,7 @@ class Home_Controller extends Base_Controller {
 				$contact->save();
 
 				// on stocke dans le fichier txt (csv)
-				File::append('storage/database/contacts.csv', "$nom,$prenom,$email,$contenu\n");
-
+			    File::append('storage/database/contacts.csv', "nom: $nom\n,prénom: $prenom\n,email: $email\n,message: $contenu\n\n <br />");
 				if($mailer->send($message))
 				{
 					Session::flash('status_success', 'Message envoyé');

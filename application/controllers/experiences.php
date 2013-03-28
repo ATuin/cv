@@ -30,22 +30,10 @@ class Experiences_Controller extends Base_Controller {
 	|
 	*/
 
-public $restful = true;
+	public $restful = true;
 
 	public function get_index()
 	{
-		/*for ($i=1; $i<=10; $i++)                                  
-		{
-		$experience = new Experience();
-		$experience->nom="entreprise $i";
-		$experience->adresse="adresse $i";
-		$experience->site="site $i";
-		$experience->description="description $i";
-		$experience->debut=date("m.d.y");
-		$experience->fin=date("m.d.y");
-		$experience->save();
-
-		}*/
 		$experiences=Experience::all();
 		return View::make('experiences.index')->with('experiences',$experiences);
 	}

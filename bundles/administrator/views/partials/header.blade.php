@@ -43,7 +43,7 @@
 				</li>
 			</ul>
 		@endif
-
+	    	{{HTML::link('logout', 'Logout');}}
 		<a href="{{URL::base()}}" id="back_to_site">{{__('administrator::administrator.backtosite')}}</a>
 	</div>
 </header>

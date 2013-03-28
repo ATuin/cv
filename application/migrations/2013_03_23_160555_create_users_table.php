@@ -16,6 +16,7 @@ class Create_Users_Table {
 			$table->string('email',200);
 			$table->string('nom',200);
 			$table->string('prenom',200);
+			$table->string('password',200);
 			$table->timestamps();
 		});
 	}

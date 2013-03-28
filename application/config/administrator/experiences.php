@@ -23,11 +23,18 @@ return array(
 			'nom',
 			'site',
 			'description',
-			'debut',
-			'fin',
+			'debut' => array(
+			    'type' => 'date',
+			    'title' => 'Début',
+			    'date_format' => 'dd-mm-yy',
+			),
+			'fin' => array(
+			    'type' => 'date',
+			    'title' => 'Fin',
+			    'date_format' => 'dd-mm-yy',
+			),
 	),
 
 
 
 );
-

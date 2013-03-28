@@ -32,7 +32,9 @@ class Competences_Controller extends Base_Controller {
 
 	public function action_index()
 	{
-		return View::make('home.index');
+		$competences=Competence::all();
+		$categories=Categorie::all();
+		return View::make('competences.index')->with('competences',$competences)->with('categories',$categories);
 	}
 
 }

@@ -32,7 +32,8 @@ class Portfolios_Controller extends Base_Controller {
 
 	public function action_index()
 	{
-		return View::make('portfolios.index');
+	    	$portfolios=Portfolio::all();
+		return View::make('portfolios.index')->with('portfolios',$portfolios);
 	}
 
 }

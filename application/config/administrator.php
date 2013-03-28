@@ -45,8 +45,7 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		//return Auth::check();
-		return 1;
+		return Auth::check();
 	},
 
 	/**
@@ -54,7 +53,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'login_path' => 'user/login',
+	'login_path' => 'login',
 
 	/**
 	 * This is the key of the return path that is sent with the redirection to your login_action. Input::get('redirect') will hold the return URL.
